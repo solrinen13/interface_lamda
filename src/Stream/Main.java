@@ -5,12 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-
 
 
 
@@ -23,25 +23,26 @@ public class Main {
 
         Stream<Integer> integerStream = list.stream();
         System.out.println("task №1");
-        findMinMax(integerStream, Comparator.comparingInt(i -> i),(min,max)-> System.out.println("Минимальное = "+min+", Максимальное = "+max));
+        findMinMax(integerStream, Comparator.comparingInt(i -> i),
+                (min,max)-> System.out.println("Минимальное = "+min+", Максимальное = "+max));
 
-        Stream<Integer> taskTwoStream = list.stream();
-
-
-        System.out.println(taskTwoStream.filter(E -> E % 2 == 0).count());
+        // Stream<Integer> taskTwoStream = list.stream();
+        // System.out.println(taskTwoStream.filter(E -> E % 2 == 0).count());
     }
       public static <T>void findMinMax(
             Stream<? extends T> stream,
             Comparator<? super T> order,
             BiConsumer<? super T, ? super T> minMaxConsumer
       )
+
       {
         List<T>arrayList;
         T min = null;
         T max = null;
-        arrayList = stream.collect(Collectors.toList());
-          Optional<T>minX =arrayList.stream().min(order);
-          Optional<T>maxX =arrayList.stream().max(order);
+          arrayList = stream.collect(Collectors.toList());
+          Optional <T> minX = arrayList.stream().min(order);
+          Optional <T> maxX = arrayList.stream().max(order);
+
 
           if(arrayList.size() > 0){
               min = minX.get();
@@ -50,3 +51,18 @@ public class Main {
           minMaxConsumer.accept(min,max);
       }
     }
+
+/*
+    Напишите метод findMinMax, находящий в стриме минимальный и максимальный элементы в соответствии порядком, заданным Comparator'ом.
+
+        Данный метод принимает на вход 3 элемента:
+
+        Stream<? extends T> stream,
+        Comparator<? super T> order,
+        BiConsumer<? super T, ? super T> minMaxConsumer
+        Найденные минимальный и максимальный элементы передайте в minMaxConsumer следующим образом:
+
+        minMaxConsumer.accept(min, max);
+        Если стрим не содержит элементов, то вызовите:
+
+        minMaxConsumer.accept(null, null);*/
