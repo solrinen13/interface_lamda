@@ -27,19 +27,33 @@ public class TaskService {
         return task;
     }
 
-    public  Task setTitle(int id, Task task){
+    public   Task setTitle(int id, String string){
         if(id <= 0){
             throw  new IncorrectArgumentException(String.valueOf(id));
         }
-
-        task.setTitle("");
-
+        Task task = taskMap.get(id);
 
         if (task == null){
             throw new TaskNotFoundException("Задача с ID = " + id + " отсутствует");
         }
-        System.out.println("Задача с ID = " + id + " удалена");
+        System.out.println("Задача с ID = " + id + " изменила название");
 
+        task.setTitle(string);
+        return task;
+    }
+
+    public   Task setDescription(int id, String string){
+        if(id <= 0){
+            throw  new IncorrectArgumentException(String.valueOf(id));
+        }
+        Task task = taskMap.get(id);
+
+        if (task == null){
+            throw new TaskNotFoundException("Задача с ID = " + id + " отсутствует");
+        }
+        System.out.println("Задача с ID = " + id + " изменила содержание");
+
+        task.setDescription(string);
         return task;
     }
 
@@ -62,6 +76,7 @@ public class TaskService {
 
         return removedTasks;
     }
+
 
 
 

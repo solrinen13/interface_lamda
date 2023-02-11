@@ -32,15 +32,19 @@ public class TaskApp {
 
         while (true) {
 
+
+
             System.out.println("1 - check task");
             System.out.println("2 - add task");
             System.out.println("3 - remove task");
             System.out.println("4 - out remote tasks");
-            System.out.println("5 - exit");
+            System.out.println("5 - set title");
+            System.out.println("6 - set description");
+            System.out.println("7 - exit");
             System.out.println("Enter value: ");
 
             int takenValue = Integer.parseInt(scanner.nextLine());
-            if (takenValue == 5) {
+            if (takenValue == 7) {
                 System.exit(0);
             }
             switch (takenValue) {
@@ -63,6 +67,18 @@ public class TaskApp {
                 case 4:
                     service.getRemovedTasks(LocalDate.now()).forEach(System.out::println);
 
+                    break;
+                case 5:
+                    System.out.println("Enter the task ID: ");
+                     taskId = Integer.parseInt(scanner.nextLine());
+                     String taskSetTitle = scanner.nextLine();
+                    service.setTitle(taskId,taskSetTitle);
+                    break;
+                case 6:
+                    System.out.println("Enter the task ID: ");
+                    taskId = Integer.parseInt(scanner.nextLine());
+                    String taskSetDescription = scanner.nextLine();
+                    service.setDescription(taskId,taskSetDescription);
                     break;
 
             }
