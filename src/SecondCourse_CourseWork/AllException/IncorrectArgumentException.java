@@ -1,6 +1,6 @@
 package SecondCourse_CourseWork.AllException;
 
-public class IncorrectArgumentException extends Exception{
+public class IncorrectArgumentException extends RuntimeException{
     private String argument;
     public IncorrectArgumentException(String argument){
         this.argument = argument;
