@@ -17,12 +17,29 @@ public class TaskService {
         if(id <= 0){
             throw  new IncorrectArgumentException(String.valueOf(id));
         }
+
         Task task = taskMap.remove(id);
         if (task == null){
             throw new TaskNotFoundException("Задача с ID = " + id + " отсутствует");
         }
         System.out.println("Задача с ID = " + id + " удалена");
         removedTasks.add(task);
+        return task;
+    }
+
+    public  Task setTitle(int id, Task task){
+        if(id <= 0){
+            throw  new IncorrectArgumentException(String.valueOf(id));
+        }
+
+        task.setTitle("");
+
+
+        if (task == null){
+            throw new TaskNotFoundException("Задача с ID = " + id + " отсутствует");
+        }
+        System.out.println("Задача с ID = " + id + " удалена");
+
         return task;
     }
 
@@ -41,14 +58,14 @@ public class TaskService {
                 .filter(e-> e.appearsIn(localDate))
                 .collect(Collectors.toList());
     }
+    public Collection <Task> getRemovedTasks (LocalDate localDate){
+
+        return removedTasks;
+    }
 
 
 
-//    map.put(getId, null);
-//    map.put(2, null);
-//    map.put(3, null);
-//    map.put(4, null);
-//    map.put(5, null);
+
 
 
 

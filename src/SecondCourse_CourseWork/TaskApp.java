@@ -17,6 +17,8 @@ public class TaskApp {
 
     public static  void main(String[] args) {
 
+
+
 //        var lDate = LocalDate.parse("2020-02-29");
 //        var task = new MonthlyTask("",Type.WORK, lDate.atStartOfDay(),"");
 //
@@ -33,11 +35,12 @@ public class TaskApp {
             System.out.println("1 - check task");
             System.out.println("2 - add task");
             System.out.println("3 - remove task");
-            System.out.println("4 - exit");
+            System.out.println("4 - out remote tasks");
+            System.out.println("5 - exit");
             System.out.println("Enter value: ");
 
             int takenValue = Integer.parseInt(scanner.nextLine());
-            if (takenValue == 4) {
+            if (takenValue == 5) {
                 System.exit(0);
             }
             switch (takenValue) {
@@ -57,7 +60,10 @@ public class TaskApp {
                     int taskId = Integer.parseInt(scanner.nextLine());
                     service.remove(taskId);
                     break;
+                case 4:
+                    service.getRemovedTasks(LocalDate.now()).forEach(System.out::println);
 
+                    break;
 
             }
 
@@ -65,37 +71,37 @@ public class TaskApp {
     }
 
     /////////////////////////////////////////////////////////
-    private static void caseOneMenu (int T)
-    {
-       // Scanner scanner2 = new Scanner(System.in);
-        System.out.println("1 - list all task for today");
-        System.out.println("2 - list all work task ");
-        System.out.println("3 - list all personal task");
-        System.out.println("4 - exit");
-        System.out.println("Введите число:");
-        T =  Integer.parseInt(scanner.nextLine());
-        if (T == 4) {
-            System.exit(0);
-        }
-
-
-        switch (T) {
-            case 1:
-                System.out.println("//////////////////////////////////////////////////////////");
-                System.out.println("Задачи на сегодня: ");
-                System.out.println("Задачи отсуствуют");
-                System.out.println("//////////////////////////////////////////////////////////");
-
-                // list.showByValue(valueDate);
-                break;
-            case 2:
-                System.out.println("Добавим задачу:");
-                break;
-            case 3:
-                break;
-
-        }
-    }
+//    private static void caseOneMenu (int T)
+//    {
+//       // Scanner scanner2 = new Scanner(System.in);
+//        System.out.println("1 - list all task for today");
+//        System.out.println("2 - list all work task ");
+//        System.out.println("3 - list all personal task");
+//        System.out.println("4 - exit");
+//        System.out.println("Введите число:");
+//        T =  Integer.parseInt(scanner.nextLine());
+//        if (T == 4) {
+//            System.exit(0);
+//        }
+//
+//
+//        switch (T) {
+//            case 1:
+//                System.out.println("//////////////////////////////////////////////////////////");
+//                System.out.println("Задачи на сегодня: ");
+//                System.out.println("Задачи отсуствуют");
+//                System.out.println("//////////////////////////////////////////////////////////");
+//
+//                // list.showByValue(valueDate);
+//                break;
+//            case 2:
+//                System.out.println("Добавим задачу:");
+//                break;
+//            case 3:
+//                break;
+//
+//        }
+//    }
     private enum TaskPeriod {
         ONE (OneTimeTask::new),
         DAILY (DailyTask::new),
@@ -112,12 +118,16 @@ public class TaskApp {
             return function.apply(type, date);
         }
     }
+
+
+
     private static void addNewTask() {
         System.out.println("give the task a name:");
         var title = scanner.nextLine();
         System.out.println("give the task a description:");
         var description = scanner.nextLine();
         System.out.println("enter the date task format 2023-02-11:");
+
         LocalDate localDate;
         String dateString;
         dateString = scanner.nextLine();
