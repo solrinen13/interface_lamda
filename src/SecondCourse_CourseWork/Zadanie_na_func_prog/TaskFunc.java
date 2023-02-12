@@ -13,6 +13,7 @@ public class TaskFunc {
         List<String> words = Arrays.asList(string.split(" "));
         System.out.println("В тексте " + words.size() + " слов");
         System.out.println("ТОП 10:");
+
         words.stream().collect(Collectors.groupingBy(String::toLowerCase,Collectors.counting()))
                 .entrySet()
                 .stream()

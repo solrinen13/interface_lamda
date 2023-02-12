@@ -82,7 +82,6 @@ public class TaskService {
 
 
 
-
     public void groupByDate() {
         System.out.println("Available tasks grouped by date: ");
         Comparator<Map.Entry<Integer, Task>> myComparator = Comparator.comparing(o -> o.getValue().getDateTask());
