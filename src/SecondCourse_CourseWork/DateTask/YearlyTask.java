@@ -17,10 +17,10 @@ public class YearlyTask extends Task {
     }
 
     @Override
-    protected boolean appearsIn(LocalDate E) {
+    protected boolean appearsIn(LocalDate e) {
 
-        return E.isAfter(getDateTask().toLocalDate()) && E.getMonth().equals(getDateTask().getMonth())
-                && E.getDayOfMonth() == getDateTask().getDayOfMonth() || E.isEqual(getDateTask().toLocalDate());
+        return e.isAfter(getDateTask().toLocalDate()) && e.getMonth().equals(getDateTask().getMonth())
+                && e.getDayOfYear() == getDateTask().getDayOfYear() || e.isEqual(getDateTask().toLocalDate());
 
     }
 }

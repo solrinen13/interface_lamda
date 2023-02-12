@@ -13,6 +13,8 @@ public class TaskService {
 
     Map<Integer, Task> taskMap = new HashMap<>();
     Collection<Task> removedTasks = new ArrayList<>();
+
+    Map<LocalDate, Collection<Task>> taskMapByDate = new HashMap<>();
     public  Task remove(int id){
         if(id <= 0){
             throw  new IncorrectArgumentException(String.valueOf(id));
@@ -27,7 +29,7 @@ public class TaskService {
         return task;
     }
 
-    public   Task setTitle(int id, String string){
+    public   Task updateTitle(int id, String string){
         if(id <= 0){
             throw  new IncorrectArgumentException(String.valueOf(id));
         }
@@ -42,7 +44,7 @@ public class TaskService {
         return task;
     }
 
-    public   Task setDescription(int id, String string){
+    public   Task updateDescription(int id, String string){
         if(id <= 0){
             throw  new IncorrectArgumentException(String.valueOf(id));
         }
@@ -72,6 +74,7 @@ public class TaskService {
                 .filter(e-> e.appearsIn(localDate))
                 .collect(Collectors.toList());
     }
+
     public Collection <Task> getRemovedTasks (LocalDate localDate){
 
         return removedTasks;
@@ -80,6 +83,21 @@ public class TaskService {
 
 
 
+    public void groupByDate() {
+        System.out.println("Available tasks grouped by date: ");
+        Comparator<Map.Entry<Integer, Task>> myComparator = Comparator.comparing(o -> o.getValue().getDateTask());
+        Map<Integer, Task> sortedMap = taskMap.entrySet().stream()
+                .sorted(myComparator)
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (a, b) -> {
+                            throw new AssertionError();
+                        },
+                        LinkedHashMap::new
+                ));
+        sortedMap.entrySet().forEach(System.out::println);
+    }
 
 
 

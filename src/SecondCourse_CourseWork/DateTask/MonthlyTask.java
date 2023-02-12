@@ -17,13 +17,13 @@ public class MonthlyTask extends Task {
     }
 
     @Override
-    public boolean appearsIn(LocalDate E) {
+    public boolean appearsIn(LocalDate e) {
 
 
-            if( E.lengthOfMonth() < getDateTask().toLocalDate().lengthOfMonth() && E.lengthOfMonth() < getDateTask().getDayOfMonth()){
-                return E.isAfter(getDateTask().toLocalDate()) && E.getDayOfMonth() == E.lengthOfMonth() ;
-            }else
-        return E.isAfter(getDateTask().toLocalDate()) && E.getDayOfMonth() == getDateTask().getDayOfMonth() || E.isEqual(getDateTask().toLocalDate());
+        if (e.lengthOfMonth() < getDateTask().toLocalDate().lengthOfMonth() && e.lengthOfMonth() < getDateTask().getDayOfMonth()) {
+            return e.isAfter(getDateTask().toLocalDate()) && e.getDayOfMonth() == e.lengthOfMonth();
+        } else
+            return e.isAfter(getDateTask().toLocalDate()) && e.getDayOfMonth() == getDateTask().getDayOfMonth() || e.isEqual(getDateTask().toLocalDate());
     }
 
 }

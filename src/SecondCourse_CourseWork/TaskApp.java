@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 
+import static SecondCourse_CourseWork.Type.WORK;
+
 public class TaskApp {
 
     static TaskService service = new TaskService();
@@ -19,8 +21,7 @@ public class TaskApp {
 
 
 
-//        var lDate = LocalDate.parse("2020-02-29");
-//        var task = new MonthlyTask("",Type.WORK, lDate.atStartOfDay(),"");
+//
 //
 //        printTestResult(task.appearsIn(LocalDate.parse("2020-01-01")), false); //date before the task
 //        printTestResult(task.appearsIn(LocalDate.parse("2020-02-01")), false); //date before the task, yet same month
@@ -40,11 +41,12 @@ public class TaskApp {
             System.out.println("4 - out remote tasks");
             System.out.println("5 - set title");
             System.out.println("6 - set description");
-            System.out.println("7 - exit");
+            System.out.println("7 - group by date");
+            System.out.println("8 - exit");
             System.out.println("Enter value: ");
 
             int takenValue = Integer.parseInt(scanner.nextLine());
-            if (takenValue == 7) {
+            if (takenValue == 8) {
                 System.exit(0);
             }
             switch (takenValue) {
@@ -72,15 +74,18 @@ public class TaskApp {
                     System.out.println("Enter the task ID: ");
                      taskId = Integer.parseInt(scanner.nextLine());
                      String taskSetTitle = scanner.nextLine();
-                    service.setTitle(taskId,taskSetTitle);
+                    service.updateTitle(taskId,taskSetTitle);
                     break;
                 case 6:
                     System.out.println("Enter the task ID: ");
                     taskId = Integer.parseInt(scanner.nextLine());
                     String taskSetDescription = scanner.nextLine();
-                    service.setDescription(taskId,taskSetDescription);
+                    service.updateDescription(taskId,taskSetDescription);
                     break;
 
+                case 7:
+                    service.groupByDate();
+                    break;
             }
 
         }

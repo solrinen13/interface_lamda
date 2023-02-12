@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public abstract class Task {
     private static int idGenerator = 0;
-   private String title;
+    private String title;
     private final Type type;
     private int id;
     private LocalDateTime dateTask;
@@ -29,7 +29,7 @@ public abstract class Task {
     }
 
     //throws
-    protected abstract boolean appearsIn (LocalDate E );
+    protected abstract boolean appearsIn(LocalDate E);
 
     public String getTitle() {
         return title;
@@ -73,9 +73,8 @@ public abstract class Task {
     }
 
 
-
     @Override
     public String toString() {
-        return this.getId()+" "+this.getType() + " " +this.getTitle()+" "+this.getDescription();
+        return this.getId() + " " + this.getType() + " " + this.getTitle() + " " + this.getDescription();
     }
 }
